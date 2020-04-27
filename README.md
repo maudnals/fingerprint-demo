@@ -1,5 +1,23 @@
-Minimal demo of fingerprintjs2.
+Minimal demo of [fingerprintjs2][fingerprintjs2-github].
 
-This project uses the Parcel bundler (see `package.json`).
+Made with the [Parcel bundler][parcel] and [Glitch][glitch].
 
-Made with <a href="https://parceljs.org">Parcel</a>, TypeScript and <a href="https://www.glitch.com">Glitch</a>.
+# Notes/Learnings
+
+* fingerprintjs2 uses [MurmurHash][murmurHash], a hash function that is fast and **non**-cryptographic i.e. **not** designed to be difficult to reverse.
+
+# Plan
+
+Todo:
+* What sort of hash is it; is there a checksum?
+* Better code org
+
+Done:
+* Log hash
+* Display hash in the UI
+* Display all fingerprinting surfaces used
+
+[parcel]: https://parceljs.org
+[glitch]: https://www.glitch.com
+[fingerprintjs2-github]: https://github.com/Valve/fingerprintjs2
+[murmurHash]: https://en.wikipedia.org/wiki/MurmurHash

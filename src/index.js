@@ -1,23 +1,49 @@
 import Fingerprint2 from "fingerprintjs2";
 
 const TIMEOUT_MS = 500;
+const hashEl = document.getElementById("hash");
+const fingerprintComponentsEl = document.getElementById("fingerprintComponents");
 
-function logHash() {
-    Fingerprint2.get(function (components) {
-        const values = components.map(function (component) { return component.value })
-        // create a hash fingerprint via murmur hash function
-        const hash = Fingerprint2.x64hash128(values.join(''), 31)
-        console.log("fingerprinting hash:", hash);
+// main
+if (window.requestIdleCallback) {
+    requestIdleCallback(() => {
+        fingerprint();
+    });
+} else {
+    setTimeout(() => {
+      fingerprint();
+    }, TIMEOUT_MS);
+}
+
+// fingerprint
+function fingerprint() {
+    Fingerprint2.get((components) => {
+        // create a hash fingerprint via hash function
+        const hash = Fingerprint2.x64hash128(getHashable(components));
+        displayHash(hash);
+        displayFingerprintComponents(components);
     });
 }
 
-if (window.requestIdleCallback) {
-    requestIdleCallback(function () {
-        logHash();
-    })
-  
-} else {
-    setTimeout(function () {
-      logHash();
-    }, TIMEOUT_MS)
+
+// DOM side effects
+function displayHash(hash) {
+  hashEl.textContent = hash;
+}
+function displayFingerprintComponents(components) {
+  const componentsList = components.reduce((acc, component) => {
+    const {key, value} = component;
+    return `${acc} 
+      <div class="component">
+        <div class="key">${key}</div>
+        <div class="value">${value.toString()}</div>
+      </div>`;
+  }, "");
+  // TODO SANITIZE
+  fingerprintComponentsEl.innerHTML = componentsList;
+}
+
+// fingerprint helpers
+function getHashable(components) {
+  return components.map(component => component.value).join('');
 }
