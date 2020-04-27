@@ -35,10 +35,11 @@ function displayHash(hash) {
 function displayFingerprintComponents(components) {
   const componentsList = components.reduce((acc, component) => {
     const {key, value} = component;
-    
-    const len = value.toString()
-    const formattedValue = value.toString().substring(0, MAX_CHAR_LENGTH);
-    return `${acc} <div>${key}: ${formattedValue}</div>`;
+    return `${acc} 
+      <div class="component">
+        <div class="key">${key}</div>
+        <div class="value">${value.toString()}</div>
+      </div>`;
   }, "");
   // TODO SANITIZE
   fingerprintComponentsEl.innerHTML = componentsList;
