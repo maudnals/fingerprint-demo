@@ -1,8 +1,6 @@
 import Fingerprint2 from "fingerprintjs2";
 
 const TIMEOUT_MS = 500;
-const MAX_CHAR_LENGTH = 15;
-
 const hashEl = document.getElementById("hash");
 const fingerprintComponentsEl = document.getElementById("fingerprintComponents");
 

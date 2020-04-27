@@ -10,13 +10,12 @@ Made with the [Parcel bundler][parcel] and [Glitch][glitch].
 
 Todo:
 * What sort of hash is it; is there a checksum?
-* Display hash in the UI
-* Display all fingerprinting surfaces used
 * Better code org
 
 Done:
 * Log hash
-
+* Display hash in the UI
+* Display all fingerprinting surfaces used
 
 [parcel]: https://parceljs.org
 [glitch]: https://www.glitch.com
